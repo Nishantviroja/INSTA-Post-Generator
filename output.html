@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Page</title>
+    
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: "Poppins", sans-serif;
+
+        }
+
+        .container {
+            height: 1080px;
+            width: 1080px;
+            position: relative;
+        }
+
+        .img {
+            width: 1080px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .imgbg {
+            width: 1080px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .text {
+            position: absolute;
+            top: 700px;
+            left: 0px;
+            width: 1058px;
+            overflow: hidden;
+            padding: 10px;
+            font-size: 2.4rem;
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .black {
+            color: black;
+        }
+
+        #downloadBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: rgb(139 92 246);
+            font-family: "Poppins", sans-serif;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <img class="img" id="imageOutput" />
+        <img class="imgbg" src="./bg.png" />
+        <p class="text" id="textOutput"></p>
+    </div>
+    <button id="downloadBtn" onclick="downloadPNG()">Download</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textOutput = document.getElementById('textOutput');
+            const imageOutput = document.getElementById('imageOutput');
+            const textInput = localStorage.getItem('textInput');
+            const fileInput = localStorage.getItem('fileInput');
+
+            textOutput.innerHTML = getColorizedText(textInput);
+            imageOutput.src = fileInput;
+        });
+
+        function getColorizedText(text) {
+            const words = text.split(' ');
+            console.log(words)
+            console.log(text.length)
+            return words.map((word, index) => {
+                const colorClass = word.length > 7  ? 'red' : 'blank';
+                return `<span class="${colorClass}">${word}</span>`;
+            }).join(' ');
+        }
+
+        function downloadPNG() {
+            const content = document.getElementById('content');
+            html2canvas(content, { width: 1080, height: 1080 }).then(canvas => {
+                const resizedCanvas = document.createElement('canvas');
+                const ctx = resizedCanvas.getContext('2d');
+                resizedCanvas.width = 1080;
+                resizedCanvas.height = 1080;
+                ctx.drawImage(canvas, 0, 0, 1080, 1080);
+                const link = document.createElement('a');
+                link.download = 'output.png';
+                link.href = resizedCanvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
