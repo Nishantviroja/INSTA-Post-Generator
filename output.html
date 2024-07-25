@@ -40,7 +40,8 @@
             width: 1058px;
             overflow: hidden;
             padding: 10px;
-            font-size: 2.4rem;
+            font-size: 2.9rem;
+            line-height: 3.4rem;
             font-family: "Poppins", sans-serif;
             font-weight: 700;
             text-align: center;
@@ -91,7 +92,7 @@
             console.log(words)
             console.log(text.length)
             return words.map((word, index) => {
-                const colorClass = word.length > 7  ? 'red' : 'blank';
+                const colorClass = word.length > 7  ? 'red' : 'black';
                 return `<span class="${colorClass}">${word}</span>`;
             }).join(' ');
         }
