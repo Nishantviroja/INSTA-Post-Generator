@@ -84,14 +84,24 @@
         .containerForOutputIMG{
             background-color: white;
             padding: 10px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-radius: 8px;
         }
 
         #previewImage {
             display: none;
+            border-radius: 6px;
+            height: 70vh;
+        }
+
+        @media only screen and (max-width: 800px) {
+            #previewImage {
+            display: none;
             border-radius: 8px;
-            width: 400px;
+            width: 90vw;
+            height: auto;
             /* border: 1px solid rgb(139 92 246); */
+        }
         }
       
     </style>
@@ -129,7 +139,7 @@
         function getColorizedText(text) {
             const words = text.split(' ');
             return words.map((word, index) => {
-                const colorClass = word.length > 7  ? 'red' : 'black';
+                const colorClass = word.length >= 7  ? 'red' : 'black';
                 return `<span class="${colorClass}">${word}</span>`;
             }).join(' ');
         }
