@@ -61,7 +61,7 @@
         }
 
         .red {
-            color: red;
+            color: #C9212E;
         }
 
         .black {
@@ -92,6 +92,7 @@
             display: none;
             border-radius: 6px;
             height: 70vh;
+            /* border: 2px solid rgb(139 92 246); */
         }
 
         @media only screen and (max-width: 800px) {
@@ -139,7 +140,7 @@
         function getColorizedText(text) {
             const words = text.split(' ');
             return words.map((word, index) => {
-                const colorClass = word.length >= 7  ? 'red' : 'black';
+                const colorClass = word.length > 7  ? 'red' : 'black';
                 return `<span class="${colorClass}">${word}</span>`;
             }).join(' ');
         }
