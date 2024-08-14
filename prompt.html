@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Copier</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-purple-200 flex justify-center items-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+        <h1 class="text-3xl font-bold mb-6 text-center text-purple-800">SEO Prompt Generator</h1>
+        <div class="mb-5">
+            <label class="block text-gray-700 text-lg font-semibold mb-2" for="paragraph">Generated Paragraph</label>
+            <textarea id="paragraph" class="border border-gray-300 p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition ease-in-out duration-150" rows="10" readonly>
+Create a comprehensive blog post with a structured format that includes a Post Title 1 (under 60 characters), Post Title 2 (120-160 characters & 20-25 words), Meta Description (160 characters max), Focus Keyphrase, and Tagline. The blog should consist of a Summary, Introduction, Detailed Analysis, Conclusion, and References, concluding with a closing line: "For the latest updates, stay tuned with marketmomentum.tech (with website link) for more updates on this story as we continue to monitor the situation." Ensure the inclusion of tables, graphs, and images where applicable, and follow SEO best practices such as maintaining word balance (20-30% common words, 10-20% uncommon words, 10-15% emotional words, and at least one power word), keeping a positive sentiment in the headline, aiming for ~55 characters and ~6 words in headlines, and placing impactful words at the beginning and end. Also, incorporate the focus keyphrase in the content, introduction, meta description, URL, and SEO title, ensure the meta description is within 160 characters, include sufficient content length, and provide internal and external links. Use the focus keyphrase at the beginning of the SEO title, make sure it's concise and effective, and enrich the content with images/videos. Paragraphs should be short, and aim for 75% of sentences to be under 20 words, minimize the use of passive voice, and increase the use of transition words. Ensure effective subheading distribution and aim for a Flesch reading ease score above 60 by simplifying sentences and using straightforward language. Additionally, provide social media content, including an Instagram caption (2-3 paragraphs with relevant hashtags) and a LinkedIn caption (either short and concise or long with 4-5 paragraphs containing key highlights). 
+
+Blog Link for Reference:
+            </textarea>
+        </div>
+        <button onclick="copyText()" class="w-full bg-purple-500 text-white p-3 rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-400 transition ease-in-out duration-150">
+            Copy Paragraph
+        </button>
+    </div>
+
+    <script>
+        function copyText() {
+            const paragraph = document.getElementById('paragraph');
+            paragraph.select();
+            paragraph.setSelectionRange(0, 99999); // For mobile devices
+            navigator.clipboard.writeText(paragraph.value).then(() => {
+                alert('Paragraph copied to clipboard');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
