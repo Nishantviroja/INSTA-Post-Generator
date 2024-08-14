@@ -67,6 +67,10 @@
         .black {
             color: black;
         }
+        .BtnSec{
+            display: flex;
+            gap: 0.5rem;
+        }
 
         #downloadBtn {
             margin-top: 10px;
@@ -78,6 +82,22 @@
             font-family: "Poppins", sans-serif;
             color: white;
             border: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        #downloadBtnOutline {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 100%;
+            background-color:  #FFF;
+            border: 2px solid rgb(139 92 246);
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: "Poppins", sans-serif;
+            color: rgb(139 92 246);
+            /* border: none; */
             cursor: pointer;
         }
 
@@ -114,7 +134,11 @@
 
     <div class="containerForOutputIMG">
         <img class="previewImage" id="previewImage" />
-        <button id="downloadBtn" onclick="downloadImg()">Download</button>
+       
+        <div class="BtnSec">
+            <button id="downloadBtnOutline" onclick="backpageBtn()">Back</button>
+            <button id="downloadBtn" onclick="downloadImg()">Download</button>
+        </div>
     </div>
 
 
@@ -132,15 +156,20 @@
             const imageOutput = document.getElementById('imageOutput');
             const textInput = localStorage.getItem('textInput');
             const fileInput = localStorage.getItem('fileInput');
+          
 
             textOutput.innerHTML = getColorizedText(textInput);
             imageOutput.src = fileInput;
         });
 
         function getColorizedText(text) {
+            // console.log(colorCharInput)
+            const colorCharInput = localStorage.getItem('colorCharInput');
+            console.log(colorCharInput)
+
             const words = text.split(' ');
             return words.map((word, index) => {
-                const colorClass = word.length > 7  ? 'red' : 'black';
+                const colorClass = word.length > colorCharInput  ? 'red' : 'black';
                 return `<span class="${colorClass}">${word}</span>`;
             }).join(' ');
         }
@@ -163,18 +192,15 @@
             });
         }
 
+        function backpageBtn(){
+            // console.log("Back page jana hai !!")
+            history.back()
+            // console.log("yai Back page hai !!!!")
+        }
+
         function downloadImg(){
 
-            // const content = document.getElementById('content');
-            // html2canvas(content, { width: 1080, height: 1080 }).then(canvas => {
-            //     const resizedCanvas = document.createElement('canvas');
-            //     const ctx = resizedCanvas.getContext('2d');
-            //     resizedCanvas.width = 1080;
-            //     resizedCanvas.height = 1080;
-            //     ctx.drawImage(canvas, 0, 0, 1080, 1080);
-                // const imageData = resizedCanvas.toDataURL('image/png');
-
-               
+           
                 const link = document.createElement('a');
                 // img name
                 let date =  new Date();
